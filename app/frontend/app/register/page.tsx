@@ -266,7 +266,7 @@ const Page = () => {
                         Topik Pilihan
                       </p>
                       {selectedTopics && selectedTopics.length > 0 && (
-                        <ul>
+                        <ul className="flex gap-x-1 flex-wrap">
                           {selectedTopics.map((topic, index) => (
                             <div className="bg-primary/15 w-fit rounded-xl text-xs px-2 py-1">
                               {topic}
