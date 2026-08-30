@@ -1,0 +1,1 @@
+Folder ini digunakan untuk menyimpan dokumentasi terkait teknis, flow atau rencana pengembangan fitur
