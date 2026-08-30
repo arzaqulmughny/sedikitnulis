@@ -1,6 +1,7 @@
 "use client";
 
-import AuthInput from "@/src/components/AuthInput";
+import AuthInput from "@/src/features/auth/components/AuthInput";
+
 import {
   ArrowForward,
   ArrowRight,
@@ -18,7 +19,7 @@ import { useState } from "react";
 
 type stepEnum = "input" | "preferences" | "confirm";
 
-const topics = ["Programming", "Career", "Business", "Finance", "Technology"];
+export const topics = ["Programming", "Career", "Business", "Finance", "Technology"];
 
 const Page = () => {
   const [step, setStep] = useState<stepEnum>("input");
@@ -52,7 +53,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-y-5 -mt-12">
+      <div className="flex flex-col items-center gap-y-5 h-screen justify-center">
         <div className="flex items-center gap-x-2">
           <img src="/assets/images/sedikitnulis.png" alt="" className="w-5.5" />
           <p className="text-primary font-bold">SedikitNulis</p>

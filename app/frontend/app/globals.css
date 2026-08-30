@@ -11,6 +11,8 @@
   --color-foreground: var(--foreground);
   --color-card-border: #e2e8f0;
   --color-primary: var(--primary);
+  --color-primary-muted: #F4FBF4;
+  --color-primary-dark: #059669;
   --color-heading-black: #161d19;
   --color-paragraph: #161d19;
   --color-bg-gray: #f1f5f9;
@@ -18,13 +20,6 @@
   --shadow-login:
     0 8px 30px -4px rgba(16, 185, 129, 0.06),
     0 4px 12px -2px rgba(16, 185, 129, 0.04);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
