@@ -20,12 +20,12 @@ const BottomNavbar = () => {
   const pathname = usePathname();
   return (
     <>
-      <ul className="flex justify-between items-center gap-x-5 bg-white px-5 py-3 rounded-t-3xl border border-paragraph/5 shadow-2xl shadow-black">
+      <ul className="flex justify-between items-center gap-x-5 bg-white px-5 py-1 rounded-t-3xl border border-paragraph/5 shadow-2xl shadow-black">
         <Link href="/">
           <BottomNavbarMenu
             active={pathname == "/"}
-            activeIcon={<HomeFilled fontSize="small" />}
-            unactiveIcon={<HomeOutlined fontSize="small" />}
+            activeIcon={<HomeFilled sx={{ fontSize: 16 }} />}
+            unactiveIcon={<HomeOutlined sx={{ fontSize: 16 }} />}
             label="Beranda"
           />
         </Link>
@@ -33,15 +33,15 @@ const BottomNavbar = () => {
         <Link href="/explore">
           <BottomNavbarMenu
             active={pathname == "/explore"}
-            activeIcon={<Explore fontSize="small" />}
-            unactiveIcon={<ExploreOutlined fontSize="small" />}
+            activeIcon={<Explore sx={{ fontSize: 16 }} />}
+            unactiveIcon={<ExploreOutlined sx={{ fontSize: 16 }} />}
             label="Jelajahi"
           />
         </Link>
 
         <Link href="/write">
           <AddCircleOutlineOutlined
-            className="text-primary scale-150 hover:text-primary-dark duration-300"
+            className="text-primary scale-110 hover:text-primary-dark duration-300"
             fontSize="medium"
           />
         </Link>
@@ -49,8 +49,8 @@ const BottomNavbar = () => {
         <Link href="/leaderboard">
           <BottomNavbarMenu
             active={pathname == "/leaderboard"}
-            activeIcon={<Leaderboard fontSize="small" />}
-            unactiveIcon={<LeaderboardOutlined fontSize="small" />}
+            activeIcon={<Leaderboard sx={{ fontSize: 16 }} />}
+            unactiveIcon={<LeaderboardOutlined sx={{ fontSize: 16 }} />}
             label="Rangking"
           />
         </Link>
@@ -58,8 +58,8 @@ const BottomNavbar = () => {
         <Link href="/profile">
           <BottomNavbarMenu
             active={pathname == "/profile"}
-            activeIcon={<Person fontSize="small" />}
-            unactiveIcon={<PersonOutlineOutlined fontSize="small" />}
+            activeIcon={<Person sx={{ fontSize: 16 }} />}
+            unactiveIcon={<PersonOutlineOutlined sx={{ fontSize: 16 }} />}
             label="Profil"
           />
         </Link>

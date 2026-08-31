@@ -17,7 +17,7 @@ const BottomNavbarMenu = ({
         {active && activeIcon}
         {!active && unactiveIcon}
 
-        <p className={`text-xs ${active ? 'font-semibold' : 'font-normal group-hover:font-semibold'} `}>{label}</p>
+        <p className={`text-[10px] ${active ? 'font-semibold' : 'font-normal group-hover:font-semibold'} `}>{label}</p>
       </div>
     </>
   );

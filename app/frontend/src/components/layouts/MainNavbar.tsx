@@ -1,21 +1,42 @@
-import { NotificationsOutlined, PersonOutlined } from "@mui/icons-material";
+"use client";
+
+import {
+  ArrowBack,
+  NotificationsOutlined,
+  PersonOutlined,
+} from "@mui/icons-material";
 import Link from "next/link";
 import ClickToActionButton from "../ui/ClickToActionButton";
 import Search from "../ui/Search";
+import { usePathname, useRouter } from "next/navigation";
 
-const MainNavbar = () => {
+interface MainNavbarProps {
+  showBackButton?: boolean;
+}
+
+const MainNavbar = ({ showBackButton = false }: MainNavbarProps) => {
+  const pathname = usePathname();
+
   return (
     <>
       <nav className="bg-white shadow-xl/5 shadow-black/30">
-        <div className="flex justify-between items-center px-5 py-1.5 gap-x-9">
-          <Link href="/" className="flex items-center gap-x-2 cursor-pointer">
-            <img
-              src="/assets/images/sedikitnulis.png"
-              alt=""
-              className="w-5.5"
-            />
-            <p className="text-primary font-black">SedikitNulis</p>
-          </Link>
+        <div className="flex justify-between items-center px-5 py-1.5 gap-x-9 max-w-325 mx-auto">
+          <div className="flex gap-x-4 items-center">
+            {showBackButton && (
+              <Link href="/" className="lg:hidden">
+                <ArrowBack className="text-paragraph hidden" fontSize="small" />
+              </Link>
+            )}
+
+            <Link href="/" className="flex items-center gap-x-2 cursor-pointer">
+              <img
+                src="/assets/images/sedikitnulis.png"
+                alt=""
+                className="w-5.5"
+              />
+              <p className="text-primary font-black">SedikitNulis</p>
+            </Link>
+          </div>
 
           <div className="flex items-center gap-x-2 lg:gap-x-5">
             <Search />

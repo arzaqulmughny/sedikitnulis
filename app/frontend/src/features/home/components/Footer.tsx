@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const footerLinks = [
+export const footerLinks = [
   {
     label: "Tentang",
     href: "/about",
