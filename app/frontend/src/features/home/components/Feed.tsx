@@ -57,7 +57,7 @@ const Feed = () => {
           {Array.from({ length: 5 }).map((_, index) => (
             <li key={index}>
               <Link href="/arza/writings/123">
-                <div className="bg-white p-8 rounded-xl shadow-xl/5 shadow-black/30 flex flex-col gap-y-8 hover:shadow-black duration-300">
+                <div className="bg-white p-8 lg:p-6 rounded-xl shadow-xl/5 shadow-black/30 flex flex-col gap-y-4 hover:shadow-black duration-300">
                   <div className="flex gap-x-5">
                     <div className="bg-primary/5 w-12 aspect-square flex justify-center items-center rounded-full">
                       <PersonOutlined
@@ -84,15 +84,18 @@ const Feed = () => {
                     </TopicBadge>
                   </div>
 
-                  <div className="flex flex-col gap-y-5">
-                    <h2 className="text-paragraph text-lg font-semibold leading-0">
-                      Hari ini akhirnya paham tentang Redis
-                    </h2>
-                    <p className="text-paragraph text-sm max-w-2/3">
-                      Ternyata konsep caching itu nggak serumit yang
-                      kubayangkan. Bayangkan aja Redis ini seperti meja kerja
-                      kita...
-                    </p>
+                  <div className="flex flex-col gap-y-5 lg:gap-y-6">
+                    <div className="flex flex-col gap-y-2">
+                      <h2 className="text-paragraph text-md lg:text-lg font-semibold">
+                        Hari ini akhirnya paham tentang Redis
+                      </h2>
+
+                      <p className="text-paragraph text-xs lg:text-sm">
+                        Ternyata konsep caching itu nggak serumit yang
+                        kubayangkan. Bayangkan aja Redis ini seperti meja kerja
+                        kita...
+                      </p>
+                    </div>
 
                     <ul className="flex gap-x-2">
                       <li>
