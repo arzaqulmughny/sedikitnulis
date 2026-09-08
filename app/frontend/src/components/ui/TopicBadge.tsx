@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 
 const variantClass = {
   "primary-muted":
-    "bg-primary-muted text-paragraph flex items-center cursor-pointer font-bold shadow-primary/20 hover:brightness-95 hover:shadow-xl/50",
+    "bg-primary/5 text-paragraph flex items-center cursor-pointer font-bold shadow-primary/20 hover:brightness-95 hover:shadow-xl/50",
   primary:
     "bg-primary text-paragraph flex items-center cursor-pointer text-white font-bold shadow-primary/20 hover:brightness-95 hover:shadow-xl/50",
   secondary:
@@ -39,7 +39,7 @@ const TopicBadge = ({
       >
         {children}
 
-        {showCloseIcon && variant === "primary" && (
+        {showCloseIcon && (
           <CloseOutlined fontSize="inherit" />
         )}
       </button>
