@@ -7,10 +7,6 @@ import WritterInformation from "@/src/features/writings/components/WritterInform
 const Layout = ({ children }: LayoutProps<"/">) => {
   return (
     <>
-      <div className="sticky top-0 left-0 right-0 z-50">
-        <MainNavbar showBackButton />
-      </div>
-
       <div className="">
         <div className="flex max-w-325 mx-auto mt-5 gap-x-24 lg:px-5">
           <div className="flex-8/12 lg:pb-0 pb-14">

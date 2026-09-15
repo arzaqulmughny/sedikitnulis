@@ -1,0 +1,107 @@
+import {
+  BookmarkBorderOutlined,
+  ChatBubbleOutlineOutlined,
+  FavoriteBorderOutlined,
+  PersonOutlined,
+  TimerOutlined,
+  VisibilityOutlined,
+} from "@mui/icons-material";
+import Link from "next/link";
+import TopicBadge from "./ui/TopicBadge";
+
+const FeedCard = () => {
+  return (
+    <>
+      <Link href="/arza/writings/123">
+        <div className="bg-white p-8 lg:p-6 rounded-xl shadow-xl/5 shadow-black/30 flex flex-col gap-y-4 hover:shadow-black duration-300">
+          <div className="flex gap-x-5">
+            <div className="bg-primary/5 w-12 aspect-square flex justify-center items-center rounded-full">
+              <PersonOutlined fontSize="small" className="text-green-700" />
+            </div>
+            <div className="flex flex-col gap-y-0.5">
+              <p className="text-paragraph text-sm font-semibold">@arza</p>
+              <p className="text-paragraph text-xs">2 jam yang lalu</p>
+            </div>
+            <TopicBadge
+              variant="primary-muted"
+              size="small"
+              className="ml-auto"
+            >
+              <TimerOutlined fontSize="inherit" className="text-paragraph" />5
+              mnt
+            </TopicBadge>
+          </div>
+
+          <div className="flex flex-col gap-y-5 lg:gap-y-6">
+            <div className="flex flex-col gap-y-2">
+              <h2 className="text-paragraph text-md lg:text-lg font-semibold">
+                Hari ini akhirnya paham tentang Redis
+              </h2>
+
+              <p className="text-paragraph text-xs lg:text-sm">
+                Ternyata konsep caching itu nggak serumit yang kubayangkan.
+                Bayangkan aja Redis ini seperti meja kerja kita...
+              </p>
+            </div>
+
+            <ul className="flex gap-x-2">
+              <li>
+                <TopicBadge size="small" variant="primary-muted">
+                  #Redis
+                </TopicBadge>
+              </li>
+              <li>
+                <TopicBadge size="small" variant="primary-muted">
+                  #Redis
+                </TopicBadge>
+              </li>
+            </ul>
+
+            <hr className="border-paragraph/5" />
+
+            <ul className="flex gap-x-4">
+              <li>
+                <button className="flex gap-x-2">
+                  <FavoriteBorderOutlined
+                    fontSize="inherit"
+                    className="text-paragraph"
+                  />
+                  <p className="text-xs text-paragraph">124</p>
+                </button>
+              </li>
+              <li>
+                <button className="flex gap-x-2">
+                  <ChatBubbleOutlineOutlined
+                    fontSize="inherit"
+                    className="text-paragraph"
+                  />
+                  <p className="text-xs text-paragraph">12</p>
+                </button>
+              </li>
+              <li>
+                <button className="flex gap-x-2">
+                  <BookmarkBorderOutlined
+                    fontSize="inherit"
+                    className="text-paragraph"
+                  />
+                  <p className="text-xs text-paragraph">12</p>
+                </button>
+              </li>
+              <li className="ml-auto">
+                <button className="flex gap-x-2">
+                  <VisibilityOutlined
+                    fontSize="inherit"
+                    className="text-paragraph"
+                  />
+                  <p className="text-xs text-paragraph">12</p>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </Link>
+    </>
+  );
+};
+
+export default FeedCard;
