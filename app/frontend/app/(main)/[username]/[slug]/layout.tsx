@@ -7,7 +7,7 @@ import WritterInformation from "@/src/features/writings/components/WritterInform
 const Layout = ({ children }: LayoutProps<"/">) => {
   return (
     <>
-      <div className="">
+      <div className="pb-8">
         <div className="flex max-w-325 mx-auto mt-5 gap-x-24 lg:px-5">
           <div className="flex-8/12 lg:pb-0 pb-14">
             <div className="px-5 lg:px-0">
@@ -28,10 +28,6 @@ const Layout = ({ children }: LayoutProps<"/">) => {
         <div className="fixed bottom-0 left-0 right-0 lg:hidden">
           <BottomNavbar />
         </div>
-      </div>
-
-      <div className="hidden lg:block mt-32">
-        <Footer />
       </div>
     </>
   );

@@ -1,0 +1,82 @@
+[
+  {
+    "photo_profile": "https://placehold.co/50?text=DA",
+    "name": "Dimas Aditya",
+    "username": "@dimas_codes",
+    "notes_count": 48,
+    "points_count": 2840,
+    "likes_count": 1400
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=AP",
+    "name": "Andi Pratama",
+    "username": "@andi_dev",
+    "notes_count": 42,
+    "points_count": 2650,
+    "likes_count": 1280
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=NS",
+    "name": "Nadia Salsabila",
+    "username": "@nadiawrites",
+    "notes_count": 39,
+    "points_count": 2410,
+    "likes_count": 1190
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=RF",
+    "name": "Rizky Firmansyah",
+    "username": "@rizky_code",
+    "notes_count": 36,
+    "points_count": 2180,
+    "likes_count": 1050
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=MA",
+    "name": "Maya Anggraini",
+    "username": "@maya_notes",
+    "notes_count": 34,
+    "points_count": 2020,
+    "likes_count": 980
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=FA",
+    "name": "Fajar Akbar",
+    "username": "@fajarbuilds",
+    "notes_count": 31,
+    "points_count": 1890,
+    "likes_count": 870
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=SR",
+    "name": "Siti Rahma",
+    "username": "@sitiwrites",
+    "notes_count": 28,
+    "points_count": 1720,
+    "likes_count": 790
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=BW",
+    "name": "Bagas Wijaya",
+    "username": "@bagasdev",
+    "notes_count": 25,
+    "points_count": 1580,
+    "likes_count": 710
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=AL",
+    "name": "Aulia Lestari",
+    "username": "@aulia_notes",
+    "notes_count": 22,
+    "points_count": 1390,
+    "likes_count": 620
+  },
+  {
+    "photo_profile": "https://placehold.co/50?text=YP",
+    "name": "Yoga Permana",
+    "username": "@yogacodes",
+    "notes_count": 19,
+    "points_count": 1170,
+    "likes_count": 540
+  }
+]

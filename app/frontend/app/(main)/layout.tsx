@@ -10,7 +10,10 @@ export const metadata: Metadata = {
 const Layout = ({ children }: LayoutProps<"/">) => {
   return (
     <>
-      <div className="border">
+      <div>
+        <div className="sticky top-0 left-0 right-0 z-50">
+          <MainNavbar />
+        </div>
         <div className="pb-20 lg:pb-0">{children}</div>
 
         <div className="fixed bottom-0 left-0 right-0 lg:hidden">
