@@ -6,6 +6,7 @@ const variantClass = {
 
 const sizeClass = {
   default: "text-xs lg:text-sm px-4 py-2",
+  small: "text-xs lg:text-sm px-4 py-1",
 }
 
 const baseClass = "w-fit cursor-pointer";
