@@ -6,8 +6,7 @@ type ExistByEmailAndUsernameRequest struct {
 }
 
 type RegisterRequest struct {
-	Username             string `json:"username" validate:"required,min=3,max=25"`
-	Email                string `json:"email" validate:"required,email,max=255"`
+	ExistByEmailAndUsernameRequest
 	Password             string `json:"password" validate:"required,min=8,max=255"`
 	PasswordConfirmation string `json:"password_confirmation" validate:"required,eqfield=Password"`
 	SelectedTopics       []int  `json:"selected_topics" validate:"required,dive,gt=0"`
