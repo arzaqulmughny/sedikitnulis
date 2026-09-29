@@ -15,9 +15,7 @@ var messages = map[string]string{
 	"max":      "{field} maksimal {param} karakter",
 }
 
-var labels = map[string]string{
-	"username": "Username",
-}
+var labels = map[string]string{}
 
 func FormatErrors(err error) map[string]string {
 	var ve validator.ValidationErrors
