@@ -10,7 +10,12 @@ coverage:
 	${GOBIN}/go-test-coverage --config=./.testcoverage.yml
 
 .PHONY: coverage-func
-coverage-func: install-go-test-coverage
+coverage-func:
 	go tool cover -func=./cover.out
+
+.PHONY: coverage-html
+coverage-html:
+	go test ./... -coverprofile=cover.out
+	go tool cover -html=cover.out
 
 
