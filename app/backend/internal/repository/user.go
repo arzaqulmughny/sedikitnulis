@@ -10,6 +10,12 @@ type UserRepository struct {
 	db *sql.DB
 }
 
+type UserRepositoryInterface interface {
+	ExistsByUsername(username string) (bool, error)
+	ExistsByEmail(email string) (bool, error)
+	CreateUserWithTopics(request dto.RegisterRequest, passwordHash string) (*dto.UserData, error)
+}
+
 func NewUserRepository(db *sql.DB) *UserRepository {
 	return &UserRepository{db: db}
 }

@@ -4,11 +4,10 @@ import (
 	"backend/internal/dto"
 	"backend/internal/repository"
 	"backend/internal/util"
-	"errors"
 )
 
 type AuthService struct {
-	userRepository  *repository.UserRepository
+	userRepository  repository.UserRepositoryInterface
 	passwordService *util.PasswordService
 	jwtService      *util.JWTService
 }
@@ -26,22 +25,22 @@ func (s *AuthService) ExistByUsernameAndEmail(request dto.ExistByEmailAndUsernam
 	exists, err := s.userRepository.ExistsByUsername(request.Username)
 
 	if err != nil {
-		return err
+		return ErrDatabase
 	}
 
 	if exists {
-		return errors.New("Username telah digunakan")
+		return ErrUsernameAlreadyUsed
 	}
 
 	// 2. Validate email not exist
 	exists, err = s.userRepository.ExistsByEmail(request.Email)
 
 	if err != nil {
-		return err
+		return ErrDatabase
 	}
 
 	if exists {
-		return errors.New("Email telah digunakan")
+		return ErrEmailAlreadyUsed
 	}
 
 	return nil
