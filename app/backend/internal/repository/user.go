@@ -39,7 +39,7 @@ func (r *UserRepository) ExistsByEmail(email string) (bool, error) {
 func (r *UserRepository) CreateUser(tx *sql.Tx, username string, email string, passwordHash string) (int, error) {
 	var id int
 
-	err := tx.QueryRow("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?) RETURNING id", username, email, passwordHash).Scan(&id)
+	err := tx.QueryRow("INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING id", username, email, passwordHash).Scan(&id)
 
 	if err != nil {
 		return 0, fmt.Errorf("Failed create a new user: %w", err)
@@ -75,7 +75,7 @@ func (r *UserRepository) AddUserTopics(tx *sql.Tx, userId int, topicIds []int) e
 func (r *UserRepository) GetUserById(id int) (dto.UserData, error) {
 	var user dto.UserData
 
-	err := r.db.QueryRow("SELECT username, email FROM users WHERE id = ?", id).Scan(&user)
+	err := r.db.QueryRow("SELECT id, username, email FROM users WHERE id = ?", id).Scan(&user.Id, &user.Username, &user.Email)
 
 	if err != nil {
 		return dto.UserData{}, fmt.Errorf("Failed get user by id: %w", err)

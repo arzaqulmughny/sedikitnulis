@@ -27,7 +27,7 @@ func (h *AuthHandler) ExistByEmailAndUsername(c fiber.Ctx) error {
 	if err := c.Bind().Body(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(dto.HandlerResponse{
 			Success: false,
-			Message: "Invalid JSON format",
+			Message: "Format JSON tidak valid",
 		})
 	}
 
@@ -52,5 +52,41 @@ func (h *AuthHandler) ExistByEmailAndUsername(c fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(dto.HandlerResponse{
 		Success: true,
 		Message: "Username dan email dapat digunakan",
+	})
+}
+
+func (h *AuthHandler) Register(c fiber.Ctx) error {
+	// 1. Parse JSON
+	var req dto.RegisterRequest
+	if err := c.Bind().Body(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(dto.HandlerResponse{
+			Success: false,
+			Message: "Format JSON tidak valid",
+		})
+	}
+
+	// 2. Request validation
+	if err := h.validator.Struct(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(dto.HandlerResponse{
+			Success: false,
+			Message: "Request tidak valid",
+			Errors:  validation.FormatErrors(err),
+		})
+	}
+
+	// 3. Call service layer
+	data, err := h.authService.Register(req)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(dto.HandlerResponse{
+			Success: false,
+			Message: "Internal server error",
+			Errors:  validation.FormatErrors(err),
+		})
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(dto.HandlerResponse{
+		Success: true,
+		Message: "User created successfully",
+		Data:    data,
 	})
 }

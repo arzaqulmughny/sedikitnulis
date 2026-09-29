@@ -67,6 +67,10 @@ func (s *AuthService) Register(request dto.RegisterRequest) (*dto.RegisterData, 
 
 	user, err := s.userRepository.CreateUserWithTopics(request, passwordHash)
 
+	if err != nil {
+		return nil, err
+	}
+
 	// 3. Create JWT
 	token, err := s.jwtService.GeneratePairToken(user.Id)
 

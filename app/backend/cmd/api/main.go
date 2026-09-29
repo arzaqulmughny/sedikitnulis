@@ -40,6 +40,7 @@ func main() {
 	// Routes
 	api := app.Group("/api")
 	api.Post("/register/exists-email-username", authHandler.ExistByEmailAndUsername)
+	api.Post("/register", authHandler.Register)
 
 	// Start server
 	log.Printf("Server will run on port %s", cfg.AppPort)
