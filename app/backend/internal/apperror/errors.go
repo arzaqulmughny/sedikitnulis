@@ -4,6 +4,7 @@ import "errors"
 
 var (
 	ErrUsernameAlreadyUsed = errors.New("username already used")
+	ErrCheckUsernameExists = errors.New("error check username exists")
 	ErrEmailAlreadyUsed    = errors.New("email already used")
 	ErrDatabase            = errors.New("database error")
 	ErrHashPassword        = errors.New("hash password error")

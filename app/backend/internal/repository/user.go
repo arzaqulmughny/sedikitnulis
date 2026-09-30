@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"backend/internal/apperror"
 	"backend/internal/dto"
 	"database/sql"
 	"fmt"
@@ -25,7 +26,7 @@ func (r *UserRepository) ExistsByUsername(username string) (bool, error) {
 	err := r.db.QueryRow("SELECT COUNT(id) FROM users WHERE username = $1", username).Scan(&count)
 
 	if err != nil {
-		return false, fmt.Errorf("Failed to check username: %w", err)
+		return false, apperror.ErrCheckUsernameExists
 	}
 
 	return count > 0, nil
