@@ -11,11 +11,6 @@ import (
 )
 
 func TestUserRepository_ExistByUsername(t *testing.T) {
-	db, mock, err := sqlmock.New()
-	require.NoError(t, err)
-
-	repo := NewUserRepository(db)
-
 	tests := []struct {
 		name       string
 		username   string
@@ -52,6 +47,12 @@ func TestUserRepository_ExistByUsername(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
+			db, mock, err := sqlmock.New()
+			require.NoError(t, err)
+			defer db.Close()
+
+			repo := NewUserRepository(db)
+
 			expect := mock.ExpectQuery(regexp.QuoteMeta("SELECT COUNT(id) FROM users WHERE username = $1")).
 				WithArgs(test.username)
 
@@ -64,23 +65,75 @@ func TestUserRepository_ExistByUsername(t *testing.T) {
 			}
 
 			result, err := repo.ExistsByUsername(test.username)
+
+			assert.ErrorIs(t, err, test.wantErr)
+			assert.Equal(t, test.wantExists, result)
+
 			require.NoError(t, mock.ExpectationsWereMet())
+		})
+	}
+}
 
-			if err != nil {
-				if test.wantErr == nil {
-					t.Errorf("Expected no error, got: %v", err)
-				} else {
-					assert.ErrorIs(t, test.wantErr, err)
-				}
+func TestUserRepository_ExistByEmail(t *testing.T) {
+	tests := []struct {
+		name       string
+		email      string
+		wantErr    error
+		count      int
+		mockErr    error
+		wantExists bool
+	}{
+		{
+			name:       "email available",
+			email:      "arza@email.com",
+			wantErr:    nil,
+			wantExists: false,
+			count:      0,
+			mockErr:    nil,
+		},
+		{
+			name:       "check email error",
+			email:      "arza@email.com",
+			wantErr:    apperror.ErrCheckEmailExists,
+			mockErr:    apperror.ErrCheckEmailExists,
+			wantExists: false,
+			count:      0,
+		},
+		{
+			name:       "email already used",
+			email:      "arza@email.com",
+			wantErr:    nil,
+			mockErr:    nil,
+			wantExists: true,
+			count:      1,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			db, mock, err := sqlmock.New()
+			require.NoError(t, err)
+			defer db.Close()
+
+			repo := NewUserRepository(db)
+
+			expect := mock.ExpectQuery(regexp.QuoteMeta("SELECT COUNT(id) FROM users WHERE email = $1")).
+				WithArgs(test.email)
+
+			if test.mockErr != nil {
+				expect.WillReturnError(test.mockErr)
 			} else {
-				if test.wantErr != nil {
-					t.Errorf("Expected error: %v, got nil", test.wantErr)
-				}
+				expect.WillReturnRows(
+					sqlmock.NewRows([]string{"count"}).AddRow(test.count),
+				)
 			}
 
-			if test.wantExists {
-				assert.Equal(t, test.wantExists, result)
-			}
+			result, err := repo.ExistsByEmail(test.email)
+
+			assert.ErrorIs(t, err, test.wantErr)
+			assert.Equal(t, test.wantExists, result)
+
+			require.NoError(t, mock.ExpectationsWereMet())
 		})
 	}
 }

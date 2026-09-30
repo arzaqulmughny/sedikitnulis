@@ -34,10 +34,10 @@ func (r *UserRepository) ExistsByUsername(username string) (bool, error) {
 
 func (r *UserRepository) ExistsByEmail(email string) (bool, error) {
 	var count int
-	err := r.db.QueryRow("SELECT COUNT(*) FROM users WHERE email = $1", email).Scan(&count)
+	err := r.db.QueryRow("SELECT COUNT(id) FROM users WHERE email = $1", email).Scan(&count)
 
 	if err != nil {
-		return false, fmt.Errorf("Failed to check email: %w", err)
+		return false, fmt.Errorf("%w: %w", apperror.ErrCheckEmailExists, err)
 	}
 
 	return count > 0, nil
