@@ -48,7 +48,7 @@ func (r *UserRepository) CreateUser(tx *sql.Tx, username string, email string, p
 	err := tx.QueryRow("INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING id", username, email, passwordHash).Scan(&id)
 
 	if err != nil {
-		return 0, fmt.Errorf("Failed create a new user: %w", err)
+		return 0, fmt.Errorf("Failed create user: %w", err)
 	}
 
 	return id, nil
@@ -94,7 +94,7 @@ func (r *UserRepository) CreateUserWithTopics(request dto.RegisterRequest, passw
 	tx, err := r.db.Begin()
 
 	if err != nil {
-		return nil, fmt.Errorf("")
+		return nil, fmt.Errorf("failed to begin transaction: %w", err)
 	}
 
 	defer tx.Rollback()
@@ -102,17 +102,17 @@ func (r *UserRepository) CreateUserWithTopics(request dto.RegisterRequest, passw
 	id, err := r.CreateUser(tx, request.Username, request.Email, passwordHash)
 
 	if err != nil {
-		return nil, fmt.Errorf("Failed to create user: %w", err)
+		return nil, err
 	}
 
 	err = r.AddUserTopics(tx, id, request.SelectedTopics)
 
 	if err != nil {
-		return nil, fmt.Errorf("Failed to add user topics: %w", err)
+		return nil, fmt.Errorf("failed to add user topics: %w", err)
 	}
 
 	if err = tx.Commit(); err != nil {
-		return nil, fmt.Errorf("Failed to commit transasction")
+		return nil, fmt.Errorf("failed to commit transasction: %w", err)
 	}
 
 	user, err := r.GetUserById(id)

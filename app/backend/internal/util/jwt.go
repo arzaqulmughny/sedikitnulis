@@ -13,6 +13,14 @@ type JWTService struct {
 	secretKey string
 }
 
+type JWTServiceInterface interface {
+	GenerateToken(userId int, tokenType string, duration time.Duration) (string, error)
+	GenerateAccessToken(userId int) (string, error)
+	GenerateRefreshToken(userId int) (string, error)
+	GeneratePairToken(userId int) (*dto.UserPairTokenData, error)
+	ValidateToken(tokenString string) (*CustomClaims, error)
+}
+
 func NewJWTService(secretKey string) *JWTService {
 	return &JWTService{
 		secretKey: secretKey,
