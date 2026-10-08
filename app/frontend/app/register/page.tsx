@@ -1,11 +1,10 @@
 "use client";
 
 import AuthInput from "@/src/features/auth/components/AuthInput";
+import useRegisterPageTitle from "@/src/features/register/hooks/useRegisterPageTitle";
 
 import {
   ArrowForward,
-  ArrowRight,
-  ArrowRightAltOutlined,
   CheckCircleOutlineOutlined,
   CloseOutlined,
   LockOutlined,
@@ -17,9 +16,15 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-type stepEnum = "input" | "preferences" | "confirm";
+export type stepEnum = "input" | "preferences" | "confirm";
 
-export const topics = ["Programming", "Career", "Business", "Finance", "Technology"];
+export const topics = [
+  "Programming",
+  "Career",
+  "Business",
+  "Finance",
+  "Technology",
+];
 
 const Page = () => {
   const [step, setStep] = useState<stepEnum>("input");
@@ -38,6 +43,8 @@ const Page = () => {
   };
 
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+
+  useRegisterPageTitle(step);
 
   const selectTopic = (topic: string) => {
     setSelectedTopics([...selectedTopics, topic]);
@@ -71,10 +78,10 @@ const Page = () => {
                 <p className="text-paragraph text-sm uppercase font-bold">
                   Langkah 1 Dari 3
                 </p>
-                <h1 className="text-heading-black font-bold text-3xl">
+                <h1 className="text-heading-black font-bold text-2xl">
                   Buat Akunmu
                 </h1>
-                <h2 className="text-paragraph text-sm text-center">
+                <h2 className="text-paragraph/60 text-sm text-center">
                   Mulai simpan dan bagikan hal-hal yang kamu <br /> pelajari.
                 </h2>
               </div>
@@ -112,7 +119,7 @@ const Page = () => {
                     <ArrowForward className="text-white" fontSize="inherit" />
                   </button>
 
-                  <p className="text-center text-sm text-paragraph">
+                  <p className="text-center text-xs text-paragraph">
                     Sudah punya akun?{" "}
                     <Link href="/login" className="text-primary">
                       Masuk
@@ -131,10 +138,10 @@ const Page = () => {
                     <p className="text-paragraph text-sm uppercase font-bold">
                       Langkah 2 Dari 3
                     </p>
-                    <h1 className="text-heading-black font-bold text-3xl text-center">
+                    <h1 className="text-heading-black font-bold text-2xl text-center">
                       Topik apa yang akan kamu pelajari?
                     </h1>
-                    <h2 className="text-paragraph text-sm text-center">
+                    <h2 className="text-paragraph/60 text-sm text-center">
                       Pilih beberapa topik agar kami bisa menampilkan catatan
                       yang relevan untukmu.
                     </h2>
@@ -164,7 +171,7 @@ const Page = () => {
                           <button
                             type="button"
                             onClick={() => unSelectTopic(topic)}
-                            className="bg-primary px-4 py-1.5 rounded-2xl text-paragraph text-sm flex items-center gap-x-2 cursor-pointer"
+                            className="bg-primary px-4 py-1.5 rounded-2xl text-paragraph flex items-center gap-x-2 cursor-pointer text-xs"
                           >
                             {topic}
                             <CloseOutlined fontSize="inherit" />
@@ -192,7 +199,7 @@ const Page = () => {
                             <button
                               type="button"
                               onClick={() => selectTopic(topic)}
-                              className="bg-primary/15 border border-primary/20 px-4 py-1.5 rounded-2xl text-paragraph text-sm flex items-center gap-x-2 cursor-pointer"
+                              className="bg-primary/15 border border-primary/20 px-4 py-1.5 rounded-2xl text-paragraph flex items-center gap-x-2 cursor-pointer text-xs"
                             >
                               {topic}
                             </button>
@@ -223,10 +230,10 @@ const Page = () => {
                 <p className="text-paragraph text-sm uppercase font-bold">
                   Langkah 3 Dari 3
                 </p>
-                <h1 className="text-heading-black font-bold text-3xl">
+                <h1 className="text-heading-black font-bold text-2xl">
                   Siap untuk mulai tumbuh?
                 </h1>
-                <h2 className="text-paragraph text-sm text-center">
+                <h2 className="text-paragraph/60 text-sm text-center">
                   Tinggal satu langkah lagi untuk memulai perjalanan belajarmu.
                 </h2>
               </div>
@@ -240,11 +247,13 @@ const Page = () => {
                         fontSize="small"
                       />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-y-1">
                       <p className="text-sm font-medium text-paragraph">
                         Email
                       </p>
-                      <p className="text-sm text-paragraph">user@example.com</p>
+                      <p className="text-xs text-paragraph/60">
+                        user@example.com
+                      </p>
                     </div>
                     <button
                       type="button"

@@ -10,7 +10,7 @@ type AuthInputProps = {
 const AuthInput = (props: AuthInputProps) => {
   return (
     <>
-      <label className="flex flex-col gap-y-1">
+      <label className="flex flex-col gap-y-1.5">
         <p className="text-sm text-paragraph font-medium">
           {props.label}
         </p>
@@ -21,7 +21,7 @@ const AuthInput = (props: AuthInputProps) => {
           <input
             type={props.type}
             placeholder={props.placeholder}
-            className="text-sm placeholder-placeholder w-full focus:outline-0 text-paragraph"
+            className="text-xs placeholder-placeholder w-full focus:outline-0 text-paragraph"
           />
         </div>
       </label>
